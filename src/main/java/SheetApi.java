@@ -49,6 +49,22 @@ public class SheetApi {
 
         // ID of the spread sheet
         String spreadsheetId = "1dLfAagLzYVvk-zWrrxeC2kSQzekivPsVpNzEbX7LHoY";
+
+        String range = "Class Data!B2:B";
+        ValueRange response = service.spreadsheets().values()
+                .get(spreadsheetId, range)
+                .execute();
+        List<List<Object>> values = response.getValues();
+
+        if (values == null || values.size() == 0) {
+            System.out.println("No data found");
+        } else {
+            for (List row : values) {
+                for (Object o : row) {
+                    System.out.println(o);
+                }
+            }
+        }
     }
 
     private static Sheets getSheetsService() throws IOException {
@@ -58,7 +74,7 @@ public class SheetApi {
 
     public static Credential authorize() throws IOException {
         // Load client secrets.
-        InputStream in = SheetApi.class.getResourceAsStream("/sheet-api-secret.json");
+        InputStream in = SheetApi.class.getResourceAsStream("sheet-api-secret.json");
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
         // Build flow and trigger user authorization request.
