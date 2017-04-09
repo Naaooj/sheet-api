@@ -1,2 +1,5 @@
 .idea/
 .gradle/
+build/
+sheet-api.iml
+sheet-api-secret.json
