@@ -2,4 +2,6 @@
 .gradle/
 build/
 sheet-api.iml
+sheet-api.ipr
+sheet-api.iws
 src/main/resources/sheet-api-secret.json
